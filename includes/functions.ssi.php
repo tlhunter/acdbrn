@@ -451,7 +451,7 @@ function buildNavigation($section, $listmode = false, $limit = 10) {
 	}
 }
 
-function renderNucleoFields($nucleo_fields) {
+function renderAcdBrnFields($abcustom_fields) {
 	global $nuke;
 	
 	$sql = "SELECT text FROM textual WHERE section = '".urlPath()."_sidebar' LIMIT 1";
@@ -520,7 +520,7 @@ function renderNucleoFields($nucleo_fields) {
 	foreach($nuke['text'] AS $key => $value)	{ $parser_replace[] = $value; }
 	foreach($nuke['bool'] AS $key => $value)	{ $parser_replace[] = $value; }
 
-	$content = str_replace($parser_items, $parser_replace, $nucleo_fields);
+	$content = str_replace($parser_items, $parser_replace, $abcustom_fields);
 	return $content;
 }
 

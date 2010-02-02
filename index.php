@@ -18,7 +18,7 @@ if (urlPath() == 'logout') {
 }
 
 $inclusion = INCLUDE_DIR . urlPath() . '.php';
-$inclusion_nucleo = INCLUDE_DIR . urlPath() . '.nucleo';
+$inclusion_abcustom = INCLUDE_DIR . urlPath() . '.abcustom';
 $query = "SELECT title, meta_desc FROM textual WHERE section = '" . urlPath() . "' LIMIT 1";
 
 # http://renownedmedia.com/blog/renownedstats-web-analyzer-page-counter-statistic/
@@ -36,7 +36,7 @@ if (file_exists($inclusion)) {
 		$nuke['page_title'] = ucwords(str_replace("_"," ",urlPath()));
 		$nuke['meta_desc'] = '';
 	}
-} else if (file_exists($inclusion_nucleo)) {
+} else if (file_exists($inclusion_abcustom)) {
 	$nuke['section_type'] = ABSTCUSTOM;
 	if ($row = mysql_fetch_assoc(runQuery($query))) {
 		$nuke['page_title'] = ucwords(str_replace("_"," ",$row['title']));
@@ -86,7 +86,7 @@ if (file_exists($template_file)) {
 
 $template_content = explode("<acdbrn field='content' />",$template_content);
 
-$template_content = renderNucleoFields($template_content);
+$template_content = renderAcdBrnFields($template_content);
 
 if (sizeof($template_content) != 2) {
 	loadCmsCss();
@@ -108,9 +108,9 @@ if ($nuke['section_type'] == ABSTERROR) {
 } else if ($nuke['section_type'] == ABSTFILE) {
 	include_once($inclusion);
 } else if ($nuke['section_type'] == ABSTCUSTOM) {
-	$nhandle = fopen($inclusion_nucleo, 'r');
-	$contents = fread($nhandle, filesize($inclusion_nucleo));
-	echo renderNucleoFields($contents);
+	$nhandle = fopen($inclusion_abcustom, 'r');
+	$contents = fread($nhandle, filesize($inclusion_abcustom));
+	echo renderAcdBrnFields($contents);
 } else if ($nuke['section_type'] == ABSTTEXT) {
 	textual();
 }
