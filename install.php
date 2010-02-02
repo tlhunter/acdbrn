@@ -54,12 +54,12 @@ table {
 			$buffer = fgets($handle, 4096);
 			if (!runQuery($buffer)) {
 				$errors++;
-				rmError("Error with line $i!");
+				abError("Error with line $i!");
 			}
 		}
 		fclose($handle);
 if ($errors) {
-	rmError("There were errors installing the database.");
+	abError("There were errors installing the database.");
 } else {
 		?>
 <p>Database Installation was a success!</p>
@@ -67,12 +67,12 @@ if ($errors) {
 <?php
 }
 	} else {
-		rmError("install.sql not found");
+		abError("install.sql not found");
 	}
 } else if ($step == 3) {
 	echo "Installation files have been deleted.";
 	unlink("install.php");
 	unlink("install.sql");
 } else {
-	rmError("invalid step");
+	abError("invalid step");
 }

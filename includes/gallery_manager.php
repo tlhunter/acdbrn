@@ -14,13 +14,13 @@ if (urlPath(1, 'remove_gallery')) {
 	}
 	runQuery("DELETE FROM gallery WHERE category = '$remove'");
 	runQuery("DELETE FROM gallery_cat WHERE id = '$remove' LIMIT 1");
-	rmError("Gallery has been deleted.", RMSUCCESS);
+	abError("Gallery has been deleted.", ABSUCCESS);
 } else if (urlPath(1, 'remove_picture')) {
 	$remove = urlPath(2);
 	runQuery("DELETE FROM gallery WHERE id = '$remove' LIMIT 1");
 	unlink("pictures/gallery/{$remove}_thumb.jpg");
 	unlink("pictures/gallery/{$remove}_full.jpg");
-	rmError("Photo has been deleted.", RMSUCCESS);
+	abError("Photo has been deleted.", ABSUCCESS);
 } else if (urlPath(1, 'new_gallery')) {
 	if (!posting()) {
 		?>
@@ -35,7 +35,7 @@ if (urlPath(1, 'remove_gallery')) {
 	} else {
 		$name = nukeNumWords($_POST['name']);
 		runQuery("INSERT INTO gallery_cat SET name = '$name', thumb = 0");
-		rmError("Gallery $name has been created", RMSUCCESS);
+		abError("Gallery $name has been created", ABSUCCESS);
 	}
 } else if (urlPath(1, 'new_picture')) {
 	if (!posting()) {
@@ -56,7 +56,7 @@ if (urlPath(1, 'remove_gallery')) {
 </form>
 <?php
 		} else {
-			rmError("You must create a photo gallery before you can create a photo!", RMWARN);
+			abError("You must create a photo gallery before you can create a photo!", ABWARN);
 		}
 	} else {
 		$name = htmlentities($_POST['name']);
@@ -66,7 +66,7 @@ if (urlPath(1, 'remove_gallery')) {
 		$id = mysql_insert_id();
 		if (posting('thumbnail'))
 			runQuery("UPDATE gallery_cat SET thumb = '$id' WHERE id = '$category' LIMIT 1");
-		rmError("Picture has been uploaded", RMSUCCESS);
+		abError("Picture has been uploaded", ABSUCCESS);
 		if ($_FILES['uploadedfile']['size']) {
 			$destination = "pictures/gallery/{$id}_thumb.jpg";
 			createThumb($_FILES['uploadedfile']['tmp_name'], $destination, $nuke['integer']['gallery_thumb_width'], $nuke['integer']['gallery_thumb_height'], true, 85, true);
@@ -105,7 +105,7 @@ if (urlPath(1, 'remove_gallery')) {
 		#$id = mysql_insert_id();
 		if ($_POST['thumbnail'] == 'on')
 			runQuery("UPDATE gallery_cat SET thumb = '$id' WHERE id = '$category' LIMIT 1");
-		rmError("Picture has been uploaded", RMSUCCESS);
+		abError("Picture has been uploaded", ABSUCCESS);
 		if ($_FILES['uploadedfile']['size']) {
 			$destination = "pictures/gallery/{$id}_thumb.jpg";
 			createThumb($_FILES['uploadedfile']['tmp_name'], $destination, $nuke['integer']['gallery_thumb_width'], $nuke['integer']['gallery_thumb_height'], true, 85, true);
@@ -135,7 +135,7 @@ if (urlPath(1, 'remove_gallery')) {
 		$thumb = $_POST['thumb'] + 0;
 		$id = $_POST['id'] + 0;
 		runQuery("UPDATE gallery_cat SET name = '$name', thumb = '$thumb' WHERE id = '$id'");
-		rmError("Gallery $name has been modified", RMSUCCESS);
+		abError("Gallery $name has been modified", ABSUCCESS);
 	}
 }
 $iw = ceil($nuke['integer']['gallery_thumb_width'] / 2);
@@ -167,7 +167,7 @@ $ih = ceil($nuke['integer']['gallery_thumb_height'] / 2);
 		}
 		echo "</table>";
 	} else {
-		rmError("No Gallery Categories Defined", RMWARN);
+		abError("No Gallery Categories Defined", ABWARN);
 	}
 ?>
 
@@ -189,7 +189,7 @@ $ih = ceil($nuke['integer']['gallery_thumb_height'] / 2);
 		}
 		echo "</table>";
 	} else {
-		rmError("No Pictures Defined", RMWARN);
+		abError("No Pictures Defined", ABWARN);
 	}
 ?>
 </td></tr></table>

@@ -24,5 +24,5 @@ if (mysql_num_rows($result)) {
 	}
 	echo "</table>";
 } else {
-	rmError("You do not have any pages created!", RMWARN);
+	abError("You do not have any pages created!", ABWARN);
 }

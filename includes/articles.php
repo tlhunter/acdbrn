@@ -8,7 +8,7 @@ if (!urlPath(1)) {
 			echo "<div class='article'><strong><a href='articles/{$row['url']}'>{$row['name']}</a></strong><small>Written: ".date("M d Y", strtotime($row['created']))."</small><p>".trimmer(htmlToText($row['content']),260)."</p></div>\n";
 		}
 	} else {
-		rmError("There are no articles yet!", RMWARN);
+		abError("There are no articles yet!", ABWARN);
 	}
 } else {
 	$url = urlPath(1);
@@ -21,7 +21,7 @@ if (!urlPath(1)) {
 		echo "</div><br />\n";
 		echo $row['content'];
 	} else {
-		rmError("The article <b>$url</b> cannot be found", RMERROR);
+		abError("The article <b>$url</b> cannot be found", ABERROR);
 	}
 }
 	

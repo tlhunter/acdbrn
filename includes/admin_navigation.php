@@ -37,6 +37,6 @@ if (!empty($_POST)) {
 <div style="line-height: 0px; clear: both;">&nbsp;</div>
 	<?php
 	} else {
-		rmError("You don't have any navigation defined! Create some pages first.", RMWARN);
+		abError("You don't have any navigation defined! Create some pages first.", ABWARN);
 	}
 }

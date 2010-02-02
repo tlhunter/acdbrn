@@ -40,9 +40,9 @@ if (!posting()) {
 
 	if (strpos($section, "_sidebar")) {
 		$original_page = substr($section, 0, strlen($section)-8);
-		rmError("Sidebar has been added. You can link to it by using the file name <a href=\"$original_page\">$original_page</a>.", RMSUCCESS);
+		abError("Sidebar has been added. You can link to it by using the file name <a href=\"$original_page\">$original_page</a>.", ABSUCCESS);
 	} else {
-		rmError("Section has been added. You can link to it by using the file name <a href=\"$section\">$section</a>.\n", RMSUCCESS);
+		abError("Section has been added. You can link to it by using the file name <a href=\"$section\">$section</a>.\n", ABSUCCESS);
 		pingGoogleSitemap();
 	}
 }

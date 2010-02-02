@@ -8,7 +8,7 @@ if (!empty($_POST)) {
 		$_SESSION['isadmin'] = 1;
 		redirect('admin');
 	} else {
-		rmError("The supplied username/password is incorrect. <a href='login'>Try Again</a>.", RMERROR);
+		abError("The supplied username/password is incorrect. <a href='login'>Try Again</a>.", ABERROR);
 	}
 	
 } else {
@@ -43,6 +43,6 @@ if (!empty($_POST)) {
 <br />
 <br />
 <br />
-<center>RenownedCMS developed by <a href="http://www.renownedmedia.com">Renowned Media</a>.</center>
+<center>AcdBrn developed by <a href="http://www.renownedmedia.com">Renowned Media</a>.</center>
 <?php
 }

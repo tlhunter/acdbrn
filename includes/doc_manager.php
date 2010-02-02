@@ -6,15 +6,15 @@ if (urlPath(1, 'remove')) {
 	$sql = "SELECT * FROM docs WHERE id = $id LIMIT 1";
 	$result = runQuery($sql);
 	$row = mysql_fetch_assoc($result);
-	$filename = RMDIRDOCS . $row['filename'];
+	$filename = ABDIRDOCS . $row['filename'];
 	if (!file_exists($filename) || !unlink($filename)) {
-		rmError("Could not remove document from filesystem!", RMERROR);
+		abError("Could not remove document from filesystem!", ABERROR);
 	}
 	$sql = "DELETE FROM docs WHERE id = $id LIMIT 1";
 	if (runQuery($sql)) {
-		rmError("The Document <b>{$row['filename']}</b> has been deleted.", RMSUCCESS);
+		abError("The Document <b>{$row['filename']}</b> has been deleted.", ABSUCCESS);
 	} else {
-		rmError("Could not remove document entry from database", RMERROR);
+		abError("Could not remove document entry from database", ABERROR);
 	}
 } else if (urlPath(1, 'add')) {
 	if (!posting()) {
@@ -33,22 +33,22 @@ if (urlPath(1, 'remove')) {
 		$filename = nukeUrlSafe(substr($raw_name, 0, strlen($raw_name)-strlen($extension)+1));
 		
 		$sqlfile = $filename . $extension;
-		$totfile = RMDIRDOCS . $sqlfile;
+		$totfile = ABDIRDOCS . $sqlfile;
 		if (file_exists($totfile)) {
 			$filename .= "-" . date("YmdHis");
 			$sqlfile_old = $sqlfile;
 			$sqlfile = $filename . $extension;
-			$totfile = RMDIRDOCS . $sqlfile;
-			rmError("A file already exists named $sqlfile_old, so we named the new file $sqlfile.", RMWARN);
+			$totfile = ABDIRDOCS . $sqlfile;
+			abError("A file already exists named $sqlfile_old, so we named the new file $sqlfile.", ABWARN);
 			unset($sqlfile_old);
 		}
 		if (move_uploaded_file($_FILES['uploadedfile']['tmp_name'], $totfile)) {
 			$sql = "INSERT INTO docs SET filename = '$sqlfile'";
 			if (runQuery($sql)) {
-				rmError("File was uploaded", RMSUCCESS);
+				abError("File was uploaded", ABSUCCESS);
 			}
 		} else {
-			rmError("Error moving uploaded file!", RMERROR);
+			abError("Error moving uploaded file!", ABERROR);
 		}
 	}
 }
@@ -70,14 +70,14 @@ if (urlPath(1, 'remove')) {
 			if ($i++ % 2) $data = 'e'; else $data = 'o';
 			echo "<tr class=\"$data\"><td class='admin_table_action'>";
 			echo "<a href=\"javascript:cd('doc_manager/remove/" . $row['id'] . "')\">" . icon('doc_delete') . "</a>";
-			if (file_exists(RMDIRDOCS.$row['filename'])) {
-				$filesize = humanReadableFilesize(filesize(RMDIRDOCS.$row['filename']));
+			if (file_exists(ABDIRDOCS.$row['filename'])) {
+				$filesize = humanReadableFilesize(filesize(ABDIRDOCS.$row['filename']));
 			} else {
 				$filesize = "<span class='red'>FILE_NOT_EXIST</span>";
 			}
-			echo "</td><td class='admin_table_action'><a href=\"".RMDIRDOCS."{$row['filename']}\">" . icon('doc_view') . "</a></td><td>{$row['filename']}</td><td>$filesize</td><td>" . date("n/j/Y", strtotime($row['added'])) . "</td></tr>\n";
+			echo "</td><td class='admin_table_action'><a href=\"".ABDIRDOCS."{$row['filename']}\">" . icon('doc_view') . "</a></td><td>{$row['filename']}</td><td>$filesize</td><td>" . date("n/j/Y", strtotime($row['added'])) . "</td></tr>\n";
 		}
 		echo "</table>";
 	} else {
-		rmError("You have not uploaded any documents yet!", RMWARN);
+		abError("You have not uploaded any documents yet!", ABWARN);
 	}

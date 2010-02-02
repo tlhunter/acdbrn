@@ -3,7 +3,7 @@ mustBeAdmin();
 buildAdminMenu(urlPath());
 if (urlPath(1, 'remove')) {
 	runQuery("DELETE FROM article WHERE id = ".urlPath(2)." LIMIT 1");
-	rmError("Article has been deleted.", RMERROR);
+	abError("Article has been deleted.", ABERROR);
 } else if (urlPath(1, 'add')) {
 	if (!posting()) {
 	wysiwyg();
@@ -74,5 +74,5 @@ if (mysql_num_rows($result)) {
 	}
 	echo "</table>";
 } else {
-	rmError("You haven't written any articles yet!", RMWARN);
+	abError("You haven't written any articles yet!", ABWARN);
 }

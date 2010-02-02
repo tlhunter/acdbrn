@@ -1,9 +1,9 @@
 <?php
-# RenownedCMS Alpha
+# AcdBrn Alpha
 # Developed by RenownedMedia.com, LLC
 # CMS Copyright 2005 Thomas Hunter
 # Released under the MIT License
-# http://code.google.com/p/renowned-cms/
+# http://code.google.com/p/acdbrn/
 session_start();
 
 define('INCLUDE_DIR', './includes/');
@@ -14,7 +14,7 @@ require_once(INCLUDE_DIR . "functions.ssi.php");
 
 if (urlPath() == 'logout') {
 	unset($_SESSION['isadmin']);
-	redirect(RMINDEX);
+	redirect(ABINDEX);
 }
 
 $inclusion = INCLUDE_DIR . urlPath() . '.php';
@@ -28,7 +28,7 @@ if (file_exists("statistics/renownedstats.php")) {
 }
 
 if (file_exists($inclusion)) {
-	$nuke['section_type'] = RMSTFILE;
+	$nuke['section_type'] = ABSTFILE;
 	if ($row = mysql_fetch_assoc(runQuery($query))) {
 		$nuke['page_title'] = ucwords(str_replace("_"," ",$row['title']));
 		$nuke['meta_desc'] = $row['meta_desc'];
@@ -37,7 +37,7 @@ if (file_exists($inclusion)) {
 		$nuke['meta_desc'] = '';
 	}
 } else if (file_exists($inclusion_nucleo)) {
-	$nuke['section_type'] = RMSTNUCLEO;
+	$nuke['section_type'] = ABSTCUSTOM;
 	if ($row = mysql_fetch_assoc(runQuery($query))) {
 		$nuke['page_title'] = ucwords(str_replace("_"," ",$row['title']));
 		$nuke['meta_desc'] = $row['meta_desc'];
@@ -46,11 +46,11 @@ if (file_exists($inclusion)) {
 		$nuke['meta_desc'] = '';
 	}
 } else if ($row = mysql_fetch_assoc(runQuery($query))) {
-	$nuke['section_type'] = RMSTTEXT;
+	$nuke['section_type'] = ABSTTEXT;
 	$nuke['page_title'] = ucwords($row['title']);
 	$nuke['meta_desc'] = $row['meta_desc'];
 } else {
-	$nuke['section_type'] = RMSTERROR;
+	$nuke['section_type'] = ABSTERROR;
 	$nuke['page_title'] = '404 Error';
 	$nuke['meta_desc'] = '';
 }
@@ -69,7 +69,7 @@ if (file_exists("template.ssi.php")) {
 	require_once("template.ssi.php");
 }
 
-if ((urlPath() == RMINDEX) && (file_exists("template_splash.htm"))) {
+if ((urlPath() == ABINDEX) && (file_exists("template_splash.htm"))) {
 	$template_file = "template_splash.htm";
 } else {
 	$template_file = "template.htm";
@@ -80,38 +80,38 @@ if (file_exists($template_file)) {
 	$template_content = fread($tfh, filesize($template_file));
 } else {
 	loadCmsCss();
-	rmError("The template file '$template_file' does not exist!", RMERROR);
+	abError("The template file '$template_file' does not exist!", ABERROR);
 	exit();
 }
 
-$template_content = explode("<rmcms field='content' />",$template_content);
+$template_content = explode("<acdbrn field='content' />",$template_content);
 
 $template_content = renderNucleoFields($template_content);
 
 if (sizeof($template_content) != 2) {
 	loadCmsCss();
-	rmError("renowned-cms: Template file does not contain exactly one content tag!", RMERROR);
+	abError("Template file does not contain exactly one content tag!", ABERROR);
 	exit();
 }
 
-if ($nuke['section_type'] == RMSTERROR) {
+if ($nuke['section_type'] == ABSTERROR) {
 	header("HTTP/1.0 404 Not Found");
 }
 
 echo $template_content[0];
 
-if ($nuke['section_type'] == RMSTERROR) {
-	rmError("The page <b>/" . urlPath() . "</b> does not exist!", RMERROR);
+if ($nuke['section_type'] == ABSTERROR) {
+	abError("The page <b>/" . urlPath() . "</b> does not exist!", ABERROR);
 	if (isAdmin()) {
 		echo "<div class='page_controls'>[ <a href='page_add/" . urlPath() . "'>" . icon('add') . " Create Page</span></a> ]</div>\n";
 	}
-} else if ($nuke['section_type'] == RMSTFILE) {
+} else if ($nuke['section_type'] == ABSTFILE) {
 	include_once($inclusion);
-} else if ($nuke['section_type'] == RMSTNUCLEO) {
+} else if ($nuke['section_type'] == ABSTCUSTOM) {
 	$nhandle = fopen($inclusion_nucleo, 'r');
 	$contents = fread($nhandle, filesize($inclusion_nucleo));
 	echo renderNucleoFields($contents);
-} else if ($nuke['section_type'] == RMSTTEXT) {
+} else if ($nuke['section_type'] == ABSTTEXT) {
 	textual();
 }
 if (CMS_DEBUG) {

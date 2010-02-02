@@ -18,7 +18,7 @@ if (!posting() && (urlPath(1, 'edit') || urlPath(1, 'add'))) {
 if (urlPath(1, 'remove')) {
 	$sql = "DELETE FROM blog WHERE id = ".urlPath(2)." LIMIT 1";
 	runQuery($sql);
-	rmError("Blog has been deleted.", RMSUCCESS);
+	abError("Blog has been deleted.", ABSUCCESS);
 } else if (urlPath(1, 'add')) {
 	if (!posting()) {
 	wysiwyg();
@@ -103,5 +103,5 @@ if (mysql_num_rows($result)) {
 	}
 	echo "</table>";
 } else {
-	rmError("You don't have any blogs yet!", RMWARN);
+	abError("You don't have any blogs yet!", ABWARN);
 }

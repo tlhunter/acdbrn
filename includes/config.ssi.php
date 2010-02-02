@@ -1,5 +1,5 @@
 <?php
-# RenownedCMS Configuration File
+# AcdBrn Configuration File
 
 define("DB_USER", 'root');			# MySQL Database Username
 define("DB_PASS", '');				# MySQL Database Password

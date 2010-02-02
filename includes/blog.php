@@ -11,7 +11,7 @@ if (urlPath(1)) {
 		echo "<div class='content'>{$row['content']}</div\n";
 		echo "</div>";
 	} else {
-		rmError("Invalid Blog Entry", RMERROR);
+		abError("Invalid Blog Entry", ABERROR);
 	}
 } else {
 	textual(urlPath());
@@ -26,6 +26,6 @@ if (urlPath(1)) {
 			echo "</div>";
 		}
 	} else {
-		rmError("No blogs yet!", RMWARN);
+		abError("No blogs yet!", ABWARN);
 	}
 }

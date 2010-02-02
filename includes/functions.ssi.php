@@ -32,15 +32,15 @@ function runQuery($query) {
 function urlPath($segment=0, $compare='') {
 	$segment = (int) $segment;
 	if (!empty($compare)) {
-		if (isset($_GET[RMGETVAR][$segment]) && $_GET[RMGETVAR][$segment] == $compare)
+		if (isset($_GET[ABGETVAR][$segment]) && $_GET[ABGETVAR][$segment] == $compare)
 			return TRUE;
 		else
 			return FALSE;
 	} else {
-		if ($segment == 0 && empty($_GET[RMGETVAR][$segment])) {
-			return RMINDEX;
-		} else if (isset($_GET[RMGETVAR][$segment])) {
-			return nukeAlphaNum($_GET[RMGETVAR][$segment]);
+		if ($segment == 0 && empty($_GET[ABGETVAR][$segment])) {
+			return ABINDEX;
+		} else if (isset($_GET[ABGETVAR][$segment])) {
+			return nukeAlphaNum($_GET[ABGETVAR][$segment]);
 		} else {
 			return false;
 		}
@@ -90,12 +90,12 @@ function nukeUrlSafe($value) {
 	return preg_replace("[^a-z0-9_]", "", $value);
 }
 
-function rmError($message, $level = 0) {
-	if ($level == RMERROR) {
+function abError($message, $level = 0) {
+	if ($level == ABERROR) {
 		$type = "error";
-	} else if ($level == RMWARN) {
+	} else if ($level == ABWARN) {
 		$type = "warn";
-	} else if ($level == RMSUCCESS) {
+	} else if ($level == ABSUCCESS) {
 		$type = "success";
 	}
 	echo "<div class=\"$type\">$message</div>\n";
@@ -305,7 +305,7 @@ Xinha.addOnloadHandler(xinha_init);
 function createThumb($name,$filename,$new_w,$new_h, $force_dimen=false, $quality = 85, $frame = false) {
 	# Resizes the image while keeping the proper aspect ratio. Returns a JPG. Not neccecarily used for thumbnail creation.
 	if (!file_exists($name)) {
-		rmError("File does not exist for thumbnail creation");
+		abError("File does not exist for thumbnail creation");
 		return false;
 	}
 	$system=explode('.',$name);
@@ -482,24 +482,24 @@ function renderNucleoFields($nucleo_fields) {
 	$nav_text = buildNavigation(urlPath(), false, $nuke['integer']['max_nav']);
 	$nav_text_list = buildNavigation(urlPath(), true, $nuke['integer']['max_nav']);
 	$parser_items = array(
-		"<rmcms field='pretitle' />",
-		"<rmcms field='title' />",
-		"<rmcms field='posttitle' />",
-		"<rmcms field='metakeywords' />",
-		"<rmcms field='metadescription' />",
-		"<rmcms field='nav' />",
-		"<rmcms field='nav' type='ul' />",
-		"<rmcms field='footer' />",
-		"<rmcms field='section' />",
-		"<rmcms field='basehref' />",
-		"<rmcms field='head' />",
-		"<rmcms field='sidebar' />"
+		"<acdbrn field='pretitle' />",
+		"<acdbrn field='title' />",
+		"<acdbrn field='posttitle' />",
+		"<acdbrn field='metakeywords' />",
+		"<acdbrn field='metadescription' />",
+		"<acdbrn field='nav' />",
+		"<acdbrn field='nav' type='ul' />",
+		"<acdbrn field='footer' />",
+		"<acdbrn field='section' />",
+		"<acdbrn field='basehref' />",
+		"<acdbrn field='head' />",
+		"<acdbrn field='sidebar' />"
 	); # add: different date formats, users online, total visitors
 
-	foreach($nuke['integer'] AS $key => $value) { $parser_items[] = "<rmcms field='integer' item='$key' />"; }
-	foreach($nuke['varchar'] AS $key => $value) { $parser_items[] = "<rmcms field='varchar' item='$key' />"; }
-	foreach($nuke['text']    AS $key => $value) { $parser_items[] = "<rmcms field='text' item='$key' />";    }
-	foreach($nuke['bool']    AS $key => $value) { $parser_items[] = "<rmcms field='bool' item='$key' />";    }
+	foreach($nuke['integer'] AS $key => $value) { $parser_items[] = "<acdbrn field='integer' item='$key' />"; }
+	foreach($nuke['varchar'] AS $key => $value) { $parser_items[] = "<acdbrn field='varchar' item='$key' />"; }
+	foreach($nuke['text']    AS $key => $value) { $parser_items[] = "<acdbrn field='text' item='$key' />";    }
+	foreach($nuke['bool']    AS $key => $value) { $parser_items[] = "<acdbrn field='bool' item='$key' />";    }
 
 	$parser_replace = array(
 		$nuke['varchar']['title_prefix'],

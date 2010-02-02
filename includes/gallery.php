@@ -32,7 +32,7 @@ if (urlPath(1)) {
 			echo "<div class=\"gallery_thumb\"><a href=\"pictures/gallery/{$row['id']}_full.jpg\" rel=\"lightbox[gallery]\" title=\"" . addslashes($row['name']) . "<div class='nobold'>{$row['description']}</div>\"><img src=\"pictures/gallery/{$row['id']}_thumb.jpg\" /><br />{$row['name']}</a></div>\n";
 		}
 	} else {
-		rmError("There are currently no pictures in this gallery.", RMWARN);
+		abError("There are currently no pictures in this gallery.", ABWARN);
 	}
 	?>
 	</div>
@@ -49,7 +49,7 @@ if (urlPath(1)) {
 			echo "<div class=\"gallery_thumb\"><a href=\"gallery/{$row['id']}\"><img src=\"pictures/gallery/{$row['thumb']}_thumb.jpg\" /><br />{$row['name']}</a></div>\n";
 		}
 	} else {
-		rmError("There are currently no gallery's.", 1);
+		abError("There are currently no gallery's.", 1);
 	}
 	?>
 	</div>

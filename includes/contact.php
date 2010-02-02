@@ -2,9 +2,9 @@
 <?php
     if (!empty($_POST)) {
 		if ($nuke['bool']['use_captcha'] && $_POST['captcha'] != $_SESSION['security_code']) {
-			rmError("The code you provided does not match the image.", RMERROR);
+			abError("The code you provided does not match the image.", ABERROR);
 		} else if (!nukeValidEmail($_POST['email']) || strlen($_POST['name']) < 4) {
-			rmError("Please provide your name and email.");
+			abError("Please provide your name and email.");
 		} else {
 			$to = $nuke['varchar']['admin_email'];
 			$email = htmlentities($_POST['email']);
@@ -16,7 +16,7 @@
 			if (@mail($to, $nuke['varchar']['title_prefix'] . " Form Submission", $body, "From: $name <$email>")) {
 				textual("contact_thanks");
 			} else {
-				rmError("Message delivery failed. Please try again in a few minutes.", RMERROR);
+				abError("Message delivery failed. Please try again in a few minutes.", ABERROR);
 			}
 		}
 	} else {
