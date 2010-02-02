@@ -1,0 +1,139 @@
+body {
+	text-align: center;
+	margin: 0px; padding: 0px;
+	background: black url("images/body.gif") repeat top center;
+}
+#container {
+	width: 800px;
+	margin: 0 auto 0 auto;
+	text-align: left;
+	background: transparent url("images/container.gif") repeat-y;
+	color: white;
+}
+#container, td, th {
+	font-family: calibri, arial !important;
+	font-size: 13px !important;
+}
+#header {
+	width: 800px; height: 98px;
+	float: left;
+	background: transparent url("images/header.jpg") no-repeat;
+}
+#nav {
+	height: 26px;
+	margin: 46px 0 0 360px;
+}
+#nav a {
+	height: 26px;
+	float: left;
+	display: block;
+	margin-right: 10px;
+}
+#nav a:hover {
+	background-position: 0px -26px;
+}
+#nav a span {
+	display: none;
+}
+#nav1 { background-image: url("images/nav1.jpg"); width: 48px; }
+#nav2 { background-image: url("images/nav2.jpg"); width: 64px; }
+#nav3 { background-image: url("images/nav3.jpg"); width: 58px; }
+#nav4 { background-image: url("images/nav4.jpg"); width: 57px; }
+#nav5 { background-image: url("images/nav5.jpg"); width: 37px; }
+#nav6 { background-image: url("images/nav6.jpg"); width: 39px; }
+#nav7 { background-image: url("images/nav7.jpg"); width: 32px; }
+#content {
+	width: 740px;
+	float: left;
+	margin-left: 30px;
+	background: transparent url("images/content.jpg") repeat 0 -68px;
+	min-height: 515px;
+}
+#content-pad {
+	padding: 12px 0 2px 20px;
+	float: left;
+	width: 530px;
+}
+#sidebar {
+	float: right;
+	width: 150px;
+	margin-right: 10px;
+	font-size: 11px;
+}
+#footer {
+	width: 800px; height: 87px;
+	clear: left;
+	background: transparent url("images/footer.jpg") no-repeat;
+	text-align: center;
+}
+#footer a {
+	color: white;
+}
+#footer div {
+	padding-top: 22px;
+	line-height: 16px;
+	font-size: 11px;
+	font-family: verdana;
+}
+p {
+	line-height: 18px;
+	margin: 0 0 10px 0;
+	padding: 0px;
+}
+h1, h2, h3, h4, h5 {
+	margin: 0 0 10px 0;
+	padding: 0px;
+	font-family: "Century Gothic";
+	font-weight: normal;
+	color: white;
+}
+h1 { font-size: 24px; border-bottom: 1px dashed white; }
+h2 { font-size: 24px; }
+h3 { font-size: 22px; font-family: "Trebuchet MS"; }
+h4 { font-size: 18px; font-family: "Trebuchet MS"; }
+h5 { font-size: 15px; font-family: "Trebuchet MS"; font-weight: bold; }
+#content a {
+	color: white !important;
+}
+.tutorial, .article {
+	background: transparent url("images/mild.png") repeat;
+	border-color: #999;
+}
+.tutorial p, .article p {
+	font-size: 11px;
+}
+.o td {
+	background: transparent url("images/mild.png") repeat;
+	-moz-border-radius: 4px;
+}
+#file_browser td {
+	border-bottom: 0px;
+	padding-bottom: 1px;
+}
+.mild {
+	background: transparent url("images/mild.png") repeat;
+}
+.dark {
+	background: transparent url("images/black.png") repeat;
+}
+
+#topbar{
+	position:absolute;
+	padding: 4px;
+	width: 700px;
+	visibility: hidden;
+	z-index: 100;
+	color: white;
+	text-align: left;
+	font-size: 12px;
+	font-family: calibri, arial;
+	background: transparent url("images/black.png") repeat;
+	border: 1px solid #999;
+	-moz-border-radius: 4px;
+}
+#topbar a {
+	color: white;
+}
+#topbar .closebar {
+	color: red;
+}

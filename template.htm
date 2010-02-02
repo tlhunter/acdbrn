@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+	<title><rmcms field='pretitle' /> : <rmcms field='title' /> : <rmcms field='posttitle' /></title>
+	<meta http-equiv="Content-Type" content="text/html;charset=iso-8859-1" />
+	<link rel="stylesheet" type="text/css" href="<rmcms field='basehref' />style.css" />
+	<meta name="description" content="<rmcms field='metadescription' />" />
+	<meta name="keywords" content="<rmcms field='metakeywords' />" />
+	<base href="<rmcms field='basehref' />" />
+	<rmcms field='head' />
+</head>
+<body id="body_<rmcms field='section' />">
+	<div id="container">
+		<div id="header">
+			<div class="inside">
+				<div class="page_heading"><rmcms field='pretitle' /></div>
+				<h2>&raquo; <rmcms field='title' /></h2>
+			</div>
+		</div>
+		
+		<div id="horizontal">
+<rmcms field='nav' />
+		</div>
+		<div id="right-column">
+			<div id="searchbox">
+				<form action="search" method="post">
+					<input name="q" class="text" type="text" />
+					<input type="submit" value="Search" name="B1" class="button" />
+				</form>
+			</div>
+<rmcms field='sidebar' />
+		</div>
+		<div id="content">
+<rmcms field='content' />
+		</div>
+	<div id="footer"><a href="index"><img src="images/home.gif" /></a> | <rmcms field='footer' /> - <a href='admin'>Administration</a> - <a href='sitemap'>Sitemap</a></div>
+</div>
+</body>
+</html>

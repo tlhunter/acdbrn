@@ -1,0 +1,10 @@
+#Renowned-CMS Rewrites
+RewriteEngine On
+RewriteRule ^([a-zA-Z0-9_-]+)(/?)$ index.php?rmurl[]=$1 [QSA]
+RewriteRule ^([a-zA-Z0-9_-]+)/([a-zA-Z0-9_-]+)(/?)$ index.php?rmurl[]=$1&rmurl[]=$2 [QSA]
+RewriteRule ^([a-zA-Z0-9_-]+)/([a-zA-Z0-9_-]+)/([a-zA-Z0-9_-]+)(/?)$ index.php?rmurl[]=$1&rmurl[]=$2&rmurl[]=$3 [QSA]
+RewriteRule ^([a-zA-Z0-9_-]+)/([a-zA-Z0-9_-]+)/([a-zA-Z0-9_-]+)/([a-zA-Z0-9_-]+)(/?)$ index.php?rmurl[]=$1&rmurl[]=$2&rmurl[]=$3&rmurl[]=$4 [QSA]
+RewriteRule ^([a-zA-Z0-9_-]+)/([a-zA-Z0-9_-]+)/([a-zA-Z0-9_-]+)/([a-zA-Z0-9_-]+)/([a-zA-Z0-9_-]+)(/?)$ index.php?rmurl[]=$1&rmurl[]=$2&rmurl[]=$3&rmurl[]=$4&rmurl[]=$5 [QSA]
+
+RewriteRule ^sitemap.xml$ sitemap.php
+RewriteRule ^captcha.png$ captcha.php
