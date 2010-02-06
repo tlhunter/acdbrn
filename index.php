@@ -66,7 +66,7 @@ foreach($content_types AS $type) {
 unset($content_types);
 
 if (file_exists("template.ssi.php")) {
-	require_once("template.ssi.php");
+	include_once("template.ssi.php");
 }
 
 if ((urlPath() == ABINDEX) && (file_exists("template_splash.htm"))) {
