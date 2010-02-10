@@ -1,5 +1,9 @@
 #Renowned-CMS Rewrites
 RewriteEngine On
+
+#Uncomment for mediatemple
+#AddHandler php5-script .php
+
 RewriteRule ^([a-zA-Z0-9_-]+)(/?)$ index.php?aburl[]=$1 [QSA]
 RewriteRule ^([a-zA-Z0-9_-]+)/([a-zA-Z0-9_-]+)(/?)$ index.php?aburl[]=$1&aburl[]=$2 [QSA]
 RewriteRule ^([a-zA-Z0-9_-]+)/([a-zA-Z0-9_-]+)/([a-zA-Z0-9_-]+)(/?)$ index.php?aburl[]=$1&aburl[]=$2&aburl[]=$3 [QSA]
